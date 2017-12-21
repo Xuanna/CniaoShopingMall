@@ -1,24 +1,20 @@
 package com.custom.cniaoshopingmall.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.custom.cniaoshopingmall.R;
+import com.custom.cniaoshopingmall.base.BaseFragment;
 
 
 /**
  * Created by Ivan on 15/9/22.
  */
-public class CartFragment extends Fragment {
-
-    @Nullable
+public class CartFragment extends BaseFragment {
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public int setLayout() {
+        return R.layout.fragment_cart;
+    }
 
-        return  inflater.inflate(R.layout.fragment_cart,container,false);
+    @Override
+    public void initView() {
+
     }
 }
