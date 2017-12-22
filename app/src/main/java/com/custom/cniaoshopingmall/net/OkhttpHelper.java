@@ -17,22 +17,22 @@ import okhttp3.Response;
  * Created by xuchichi on 2017/12/21.
  */
 public class OkhttpHelper {
-    private static OkHttpClient okHttpClient= MyApplication.okHttpClient;
+    private OkHttpClient okHttpClient  = MyApplication.okHttpClient;
 
-    public static OkhttpHelper getInstance(){
+    public  static OkhttpHelper getInstance(){
         return new OkhttpHelper();
     }
-    public static void get(String url,BaseCallback callback){
+    public  void get(String url,BaseCallback callback){
         Request request=getRequest(url,null,OkhttpMethod.GET);
         doRequest(request,callback);
     }
-    public static void post(String url,Map<String,String> params,BaseCallback callback){
+    public  void post(String url,Map<String,String> params,BaseCallback callback){
         RequestBody body=formData(params);
         Request request=getRequest(url,body,OkhttpMethod.POST);
         doRequest(request,callback);
     }
 
-    public static void doRequest(Request request, final BaseCallback callback){
+    public  void doRequest(Request request, final BaseCallback callback){
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

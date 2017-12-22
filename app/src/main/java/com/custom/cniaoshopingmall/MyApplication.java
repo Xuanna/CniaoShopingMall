@@ -12,16 +12,16 @@ import okhttp3.OkHttpClient;
  */
 public class MyApplication extends Application {
     public static Context context;
-    public static OkHttpClient okHttpClient;
+    public static OkHttpClient okHttpClient =new OkHttpClient.Builder()
+            .connectTimeout(10*1000, TimeUnit.SECONDS)
+    .writeTimeout(10*1000, TimeUnit.SECONDS)
+    .readTimeout(10*1000, TimeUnit.SECONDS).build();
 
     @Override
     public void onCreate() {
         super.onCreate();
         context=getApplicationContext();
 
-        okHttpClient=new OkHttpClient.Builder()
-                .connectTimeout(10*1000, TimeUnit.SECONDS)
-                .writeTimeout(10*1000, TimeUnit.SECONDS)
-                .readTimeout(10*1000, TimeUnit.SECONDS).build();
+
     }
 }
