@@ -1,5 +1,8 @@
 package com.custom.cniaoshopingmall.net;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.custom.cniaoshopingmall.MyApplication;
 
 import java.io.IOException;
@@ -18,6 +21,11 @@ import okhttp3.Response;
  */
 public class OkhttpHelper {
     private OkHttpClient okHttpClient  = MyApplication.okHttpClient;
+    private Handler handler;
+
+    public OkhttpHelper() {
+        handler=new Handler(Looper.getMainLooper());
+    }
 
     public  static OkhttpHelper getInstance(){
         return new OkhttpHelper();
@@ -42,12 +50,32 @@ public class OkhttpHelper {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if(response.isSuccessful()){
-                    callback.onRequessSuccess(response);
+                    onRequestSuccess(response,callback);
+//                    callback.onRequessSuccess(response);
                 }else{
-                        callback.onRequessError(response);
+                    onRequessError(response,callback);
+//                        callback.onRequessError(response);
                 }
             }
         });
+    }
+    private void onRequestSuccess(final Response response,final BaseCallback callback){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onRequessSuccess(response);
+            }
+        });
+
+    }
+    private void onRequessError(final Response response,final BaseCallback callback){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onRequessError(response);
+            }
+        });
+
     }
     public static Request getRequest(String url, RequestBody requestBody, OkhttpMethod method){
       Request.Builder builder=new Request.Builder();

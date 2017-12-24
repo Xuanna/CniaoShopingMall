@@ -4,13 +4,12 @@
     android:layout_height="match_parent">
 
 
-
-
     <TextView
+        android:id="@+id/tv"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Cart"/>
+        android:text="Cart" />
 
 </LinearLayout>
