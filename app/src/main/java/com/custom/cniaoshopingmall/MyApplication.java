@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient;
  * Created by xuchichi on 2017/12/21.
  */
 public class MyApplication extends Application {
+
     public static Context context;
     public static OkHttpClient okHttpClient =new OkHttpClient.Builder()
             .connectTimeout(10*1000, TimeUnit.SECONDS)
