@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.custom.cniaoshopingmall.MyApplication;
+import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 
 import java.io.IOException;
 import java.util.Map;
@@ -22,9 +24,11 @@ import okhttp3.Response;
 public class OkhttpHelper {
     private OkHttpClient okHttpClient  = MyApplication.okHttpClient;
     private Handler handler;
+    private Gson gson;
 
     public OkhttpHelper() {
         handler=new Handler(Looper.getMainLooper());
+        gson=new Gson();
     }
 
     public  static OkhttpHelper getInstance(){
@@ -50,20 +54,30 @@ public class OkhttpHelper {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if(response.isSuccessful()){
-                    onRequestSuccess(response,callback);
-//                    callback.onRequessSuccess(response);
+                    String string=response.body().string();
+                    if(callback.mType==String.class){
+                        onRequestSuccess(response,callback,string);
+                    }else{
+                        try {
+                            Object object= gson.fromJson(string,callback.mType);
+                            onRequestSuccess(response,callback,object);
+                        }catch (JsonParseException ex){
+                            ex.printStackTrace();
+                            onRequessError(response,callback);
+                        }
+
+                    }
                 }else{
                     onRequessError(response,callback);
-//                        callback.onRequessError(response);
                 }
             }
         });
     }
-    private void onRequestSuccess(final Response response,final BaseCallback callback){
+    private void onRequestSuccess(final Response response,final BaseCallback callback,final  Object object){
         handler.post(new Runnable() {
             @Override
             public void run() {
-                callback.onRequessSuccess(response);
+                callback.onRequessSuccess(response,object);
             }
         });
 
