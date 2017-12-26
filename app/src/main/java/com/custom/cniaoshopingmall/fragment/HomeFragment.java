@@ -55,6 +55,8 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onRequessSuccess(Response response, List<BannerInfo> lists) {
                 try {
+                    list.clear();
+                    images.clear();
                     list = lists;
                     for (BannerInfo info : list) {
                         images.add(info.getImgUrl());
