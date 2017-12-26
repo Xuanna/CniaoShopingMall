@@ -40,7 +40,7 @@ public abstract class BaseFragment extends Fragment {
     }
     public void getData(){
 
-    };
+    }
 
     @Override
     public void onDestroy() {
