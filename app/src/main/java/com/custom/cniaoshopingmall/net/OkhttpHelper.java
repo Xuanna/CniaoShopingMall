@@ -45,6 +45,7 @@ public class OkhttpHelper {
     }
 
     public  void doRequest(Request request, final BaseCallback callback){
+        callback.onRequestBefore();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -53,6 +54,7 @@ public class OkhttpHelper {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                callback.onResponse(response);
                 if(response.isSuccessful()){
                     String string=response.body().string();
                     if(callback.mType==String.class){

@@ -31,6 +31,7 @@ public abstract class BaseCallback<T> {
         mType = getSuperclassTypeParameter(getClass());
     }
     public abstract void onFailure(IOException e);
+    public abstract void onRequestBefore();
     public abstract void onResponse(Response response);
     public abstract void onRequessSuccess(Response response,T t);
     public abstract void onRequessError(Response response);

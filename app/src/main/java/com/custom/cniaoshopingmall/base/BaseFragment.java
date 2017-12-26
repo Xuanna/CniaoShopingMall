@@ -32,6 +32,17 @@ public abstract class BaseFragment extends Fragment {
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser){
+            getData();
+        }
+    }
+    public void getData(){
+
+    };
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         ButterKnife.reset(view);

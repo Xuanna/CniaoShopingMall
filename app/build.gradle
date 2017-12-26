@@ -29,4 +29,6 @@ dependencies {
     compile 'com.squareup.okio:okio:1.13.0'
     compile 'com.youth.banner:banner:1.4.10'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.github.d-max:spots-dialog:0.7@aar'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
 }

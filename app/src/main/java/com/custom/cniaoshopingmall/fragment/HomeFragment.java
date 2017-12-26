@@ -1,6 +1,7 @@
 package com.custom.cniaoshopingmall.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,14 +11,12 @@ import android.view.ViewGroup;
 import com.custom.cniaoshopingmall.R;
 import com.custom.cniaoshopingmall.base.BaseFragment;
 import com.custom.cniaoshopingmall.entity.BannerInfo;
-import com.custom.cniaoshopingmall.net.BaseCallback;
 import com.custom.cniaoshopingmall.net.Business;
+import com.custom.cniaoshopingmall.net.DialogCallback;
 import com.custom.cniaoshopingmall.tools.GildeImageLoader;
-import com.google.gson.Gson;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,46 +34,29 @@ public class HomeFragment extends BaseFragment {
     Toolbar toolbar;
     @InjectView(R.id.banner)
     Banner banner;
+    @InjectView(R.id.recycleView)
+    RecyclerView recycleView;
 
     @Override
     public int setLayout() {
         return R.layout.fragment_home;
     }
-    public void initBanner(){
+
+    public void initBanner() {
         banner.setImageLoader(new GildeImageLoader());
-        //设置图片集合
         banner.setImages(images);
-//        banner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);
         banner.setIndicatorGravity(BannerConfig.RIGHT);
-        //banner设置方法全部调用完毕时最后调用
         banner.start();
     }
-    List<BannerInfo> list =new ArrayList<>();
+    List<BannerInfo> list = new ArrayList<>();
+
     public void getBanner() {
-        Business.getBanner(1, new BaseCallback<List<BannerInfo>>() {
+        Business.getBanner(1, new DialogCallback<List<BannerInfo>>(getContext()) {
             @Override
-            public void onFailure(IOException e) {
+            public void onRequessSuccess(Response response, List<BannerInfo> lists) {
                 try {
-                    Log.e("onFailure", e.toString());
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onResponse(Response response) {
-                try {
-                    Log.e("onResponse", response.body().string());
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onRequessSuccess(Response response,List<BannerInfo> lists) {
-                try {
-                    list=lists;
-                    for (BannerInfo info:list) {
+                    list = lists;
+                    for (BannerInfo info : list) {
                         images.add(info.getImgUrl());
                     }
                     initBanner();
@@ -90,7 +72,6 @@ public class HomeFragment extends BaseFragment {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
             }
         });
     }
