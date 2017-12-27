@@ -9,10 +9,24 @@ import java.util.Map;
 public class Business {
     public static OkhttpHelper okhttpHelper=OkhttpHelper.getInstance();
 
+   /**
+     * 首页banner
+     * @param type
+     * @param baseCallback
+     */
     public static void getBanner(int type,BaseCallback baseCallback){
         Map<String,String> map=new HashMap<>();
         map.put("type",type+"");
         okhttpHelper.post(Urls.bannerUrl,map,baseCallback);
+    }
+
+    /**
+     * 首页活动推荐
+     * @param baseCallback
+     */
+    public static void getRecommend(BaseCallback baseCallback){
+        Map<String,String> map=new HashMap<>();
+        okhttpHelper.post(Urls.recommendUrl,map,baseCallback);
     }
 
 }

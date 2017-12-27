@@ -26,9 +26,9 @@ public class CartFragment extends BaseFragment {
     }
 
     @Override
-    public void initView() {
-    }
+    public void initView(View view) {
 
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view

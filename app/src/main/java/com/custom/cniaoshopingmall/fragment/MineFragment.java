@@ -1,5 +1,7 @@
 package com.custom.cniaoshopingmall.fragment;
 
+import android.view.View;
+
 import com.custom.cniaoshopingmall.R;
 import com.custom.cniaoshopingmall.base.BaseFragment;
 
@@ -14,7 +16,7 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
-    public void initView() {
+    public void initView(View view) {
 
     }
 }
