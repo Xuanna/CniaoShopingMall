@@ -1,14 +1,13 @@
 package com.custom.cniaoshopingmall.fragment;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.custom.cniaoshopingmall.R;
 import com.custom.cniaoshopingmall.adapter.HomeListAdapter;
@@ -34,10 +33,11 @@ import okhttp3.Response;
  */
 public class HomeFragment extends BaseFragment {
 
-    @InjectView(R.id.toolbar)
-    Toolbar toolbar;
+
     @InjectView(R.id.banner)
     Banner banner;
+    @InjectView(R.id.srl_fresh)
+    SwipeRefreshLayout srlFresh;
 //    @InjectView(R.id.recycleView)
     RecyclerView recycleView;
 
@@ -92,19 +92,20 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
-    public void getRecommend(){
+
+    public void getRecommend() {
         Business.getRecommend(new DialogCallback<List<HomeRecomendInfo>>(context) {
             @Override
             public void onRequessSuccess(Response response, List<HomeRecomendInfo> o) {
-                   try {
-                       Log.e("response",response.body().string());
-                      }catch (Exception ex){
-                        ex.printStackTrace();
-                     }
+                try {
+                    Log.e("response", response.body().string());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
 
-                recomendInfos=o;
+                recomendInfos = o;
                 recycleView.setLayoutManager(new LinearLayoutManager(context));
-                adapter = new HomeListAdapter(recomendInfos,context);
+                adapter = new HomeListAdapter(recomendInfos, context);
                 recycleView.setAdapter(adapter);
             }
 
@@ -114,15 +115,16 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
+
     public void initAdapter() {
-            recycleView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-            adapter = new HomeListAdapter(recomendInfos,context);
-            recycleView.setAdapter(adapter);
+        recycleView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        adapter = new HomeListAdapter(recomendInfos, context);
+        recycleView.setAdapter(adapter);
     }
 
     @Override
     public void initView(View view) {
-        recycleView= (RecyclerView) view.findViewById(R.id.recycleView);
+        recycleView = (RecyclerView) view.findViewById(R.id.recycleView);
 //        initAdapter();
 //        getBanner();
 //        getRecommend();
