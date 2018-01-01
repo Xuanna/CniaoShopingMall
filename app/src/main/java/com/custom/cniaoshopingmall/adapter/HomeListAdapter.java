@@ -2,7 +2,6 @@ package com.custom.cniaoshopingmall.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +14,6 @@ import com.custom.cniaoshopingmall.entity.HomeRecomendInfo;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by xuchichi on 2017/12/26.
@@ -70,19 +66,12 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.MyHold
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
-//        @InjectView(R.id.text_title)
         TextView textTitle;
-//        @InjectView(R.id.imgview_small_top)
         ImageView imgviewSmallTop;
-//        @InjectView(R.id.line2)
         View line2;
-//        @InjectView(R.id.imgview_small_bottom)
         ImageView imgviewSmallBottom;
-//        @InjectView(R.id.layout_left)
         LinearLayout layoutLeft;
-//        @InjectView(R.id.line)
         View line;
-//        @InjectView(R.id.imgview_big)
         ImageView imgviewBig;
 
         public MyHolder(View itemView) {
@@ -91,7 +80,6 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.MyHold
             imgviewSmallTop= (ImageView) itemView.findViewById(R.id.imgview_small_top);
             imgviewSmallBottom= (ImageView) itemView.findViewById(R.id.imgview_small_bottom);
             imgviewBig= (ImageView) itemView.findViewById(R.id.imgview_big);
-//            ButterKnife.inject(itemView);
         }
     }
 }

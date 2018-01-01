@@ -19,18 +19,16 @@ import com.custom.cniaoshopingmall.fragment.MineFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
-
-    @InjectView(R.id.real_fl)
+    List<Tab> list = new ArrayList<>();
+    @BindView(R.id.real_fl)
     FrameLayout realFl;
-    @InjectView(android.R.id.tabcontent)
+    @BindView(android.R.id.tabcontent)
     FrameLayout tabcontent;
-    @InjectView(android.R.id.tabhost)
+    @BindView(android.R.id.tabhost)
     FragmentTabHost tabhost;
-    List<Tab> list=new ArrayList<>();
 
     @Override
     public int setLayout() {
@@ -39,33 +37,34 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-       initTab();
+        initTab();
     }
 
-    public void initTab(){
+    public void initTab() {
         list.add(new Tab("首页", R.drawable.selector_icon_home, HomeFragment.class));
         list.add(new Tab("热卖", R.drawable.selector_icon_hot, HotFragment.class));
         list.add(new Tab("分类", R.drawable.selector_icon_category, CategoryFragment.class));
         list.add(new Tab("购物车", R.drawable.selector_icon_cart, CartFragment.class));
         list.add(new Tab("我的", R.drawable.selector_icon_mine, MineFragment.class));
         tabhost.setup(context, getSupportFragmentManager(), R.id.real_fl);
-        for (Tab tab:list) {
+        for (Tab tab : list) {
             addTab(tab);
         }
         tabhost.setCurrentTab(0);
     }
-    public void addTab(Tab tab){
+
+    public void addTab(Tab tab) {
         View view = LayoutInflater.from(context).inflate(R.layout.tab_indicator, null);
-        ImageView imageView= (ImageView) view.findViewById(R.id.icon_tab);
-        TextView textView= (TextView) view.findViewById(R.id.txt_indicator);
+        ImageView imageView = (ImageView) view.findViewById(R.id.icon_tab);
+        TextView textView = (TextView) view.findViewById(R.id.txt_indicator);
         imageView.setImageResource(tab.getDrawable());
         textView.setText(tab.getTitle());
-        tabhost.addTab(tabhost.newTabSpec(tab.getTitle()).setIndicator(view), tab.getFragment(),null);
+        tabhost.addTab(tabhost.newTabSpec(tab.getTitle()).setIndicator(view), tab.getFragment(), null);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
     }
 }
