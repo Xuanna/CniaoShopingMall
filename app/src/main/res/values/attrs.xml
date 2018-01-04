@@ -8,4 +8,10 @@
 
     </declare-styleable>
 
+    <declare-styleable name="ClearEditText">
+        <attr name="drawableWidth" format="integer"/>
+        <attr name="drawableHeight" format="integer"/>
+        <attr name="deleteImgIcon" format="reference"/>
+    </declare-styleable>
+
 </resources>
