@@ -54,6 +54,11 @@ public class CnToolbar extends Toolbar {
 
 
             final Drawable rightIcon = a.getDrawable(R.styleable.CnToolbar_rightButtonIcon);
+
+            final String titleText=a.getString(R.styleable.CnToolbar_myTitleText);
+            if (titleText!=null){
+                setTitle(titleText);
+            }
             if (rightIcon != null) {
                 //setNavigationIcon(navIcon);
                 setRightButtonIcon(rightIcon);
@@ -89,7 +94,7 @@ public class CnToolbar extends Toolbar {
             mRightImageButton = (ImageButton) mView.findViewById(R.id.toolbar_rightButton);
 
 
-            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
+            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
 
             addView(mView, lp);
         }
@@ -98,7 +103,16 @@ public class CnToolbar extends Toolbar {
 
     }
 
-
+    public void setTitle(int res){
+        setTitle(getContext().getText(res));
+    }
+    public void setTitle(CharSequence title){
+        initView();
+        if(mTextTitle !=null) {
+            mTextTitle.setText(title);
+            showTitleView();
+        }
+    }
     public void  setRightButtonIcon(Drawable icon){
 
         if(mRightImageButton !=null){
@@ -118,26 +132,22 @@ public class CnToolbar extends Toolbar {
 
 
 
-    @Override
-    public void setTitle(int resId) {
+//    @Override
+//    public void setTitle(int resId) {
+//
+//        setTitle(getContext().getText(resId));
+//    }
+//
+//    @Override
+//    public void setTitle(CharSequence title) {
+//
+//        initView();
+//        if(mTextTitle !=null) {
+//            mTextTitle.setText(title);
+//            showTitleView();
+//        }
+//    }
 
-        setTitle(getContext().getText(resId));
-    }
-
-    @Override
-    public void setTitle(CharSequence title) {
-
-        initView();
-        if(mTextTitle !=null) {
-            mTextTitle.setText(title);
-            showTitleView();
-        }
-
-
-
-
-
-    }
 
 
 

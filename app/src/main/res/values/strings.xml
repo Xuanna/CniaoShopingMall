@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CniaoShopingMall</string>
+    <string name="home">首页</string>
+    <string name="hot">热卖</string>
+    <string name="cart">购物车</string>
+    <string name="mine">我的</string>
+    <string name="categary">分类</string>
 </resources>

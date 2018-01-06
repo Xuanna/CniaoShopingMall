@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.custom.cniaoshopingmall.R;
 import com.custom.cniaoshopingmall.adapter.CommonAdapter;
-import com.custom.cniaoshopingmall.adapter.HomeListAdapter;
 import com.custom.cniaoshopingmall.base.BaseAdapter;
 import com.custom.cniaoshopingmall.base.BaseFragment;
 import com.custom.cniaoshopingmall.base.BaseRecycleHolder;
@@ -23,6 +21,7 @@ import com.custom.cniaoshopingmall.entity.HomeRecomendInfo;
 import com.custom.cniaoshopingmall.net.Business;
 import com.custom.cniaoshopingmall.net.DialogCallback;
 import com.custom.cniaoshopingmall.tools.GildeImageLoader;
+import com.custom.cniaoshopingmall.widget.CnToolbar;
 import com.squareup.picasso.Picasso;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -41,22 +40,21 @@ import okhttp3.Response;
  */
 public class HomeFragment extends BaseFragment {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.cnToolbar)
+    CnToolbar cnToolbar;
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
     @BindView(R.id.refresh)
     MaterialRefreshLayout refresh;
-    Unbinder unbinder;
 
+    Unbinder unbinder;
 
 
     List<String> images = new ArrayList<>();
     List<BannerInfo> list = new ArrayList<>();
     List<HomeRecomendInfo> recomendInfos = new ArrayList<>();
-
     @Override
     public int setLayout() {
         return R.layout.fragment_home;
@@ -68,20 +66,22 @@ public class HomeFragment extends BaseFragment {
         banner.setIndicatorGravity(BannerConfig.RIGHT);
         banner.start();
     }
+
     int refreshMode;
+
     public void initRefresh() {
         refresh.setLoadMore(true);
         refresh.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
-                refreshMode=1;
+                refreshMode = 1;
                 getRecommend();
             }
 
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout);
-                refreshMode=2;
+                refreshMode = 2;
                 getRecommend();
             }
         });
@@ -134,13 +134,13 @@ public class HomeFragment extends BaseFragment {
                     ex.printStackTrace();
                 }
                 recomendInfos = o;
-                if (refreshMode==0){
+                if (refreshMode == 0) {
                     adapter.addData(recomendInfos);
-                }else if (refreshMode==1) {
-               adapter.refreshData(recomendInfos);
-               }else if (refreshMode==2){
-                 adapter.addMore(recomendInfos);
-             }
+                } else if (refreshMode == 1) {
+                    adapter.refreshData(recomendInfos);
+                } else if (refreshMode == 2) {
+                    adapter.addMore(recomendInfos);
+                }
             }
 
             @Override
@@ -149,10 +149,12 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
+
     HomeAdapter adapter;
+
     public void initAdapter() {
         recycleView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-         adapter = new HomeAdapter(context, recomendInfos, R.layout.template_home_cardview);
+        adapter = new HomeAdapter(context, recomendInfos, R.layout.template_home_cardview);
         recycleView.setAdapter(adapter);
         adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override

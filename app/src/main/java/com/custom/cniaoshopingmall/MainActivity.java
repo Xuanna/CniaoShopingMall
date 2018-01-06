@@ -41,11 +41,11 @@ public class MainActivity extends BaseActivity {
     }
 
     public void initTab() {
-        list.add(new Tab("首页", R.drawable.selector_icon_home, HomeFragment.class));
-        list.add(new Tab("热卖", R.drawable.selector_icon_hot, HotFragment.class));
-        list.add(new Tab("分类", R.drawable.selector_icon_category, CategoryFragment.class));
-        list.add(new Tab("购物车", R.drawable.selector_icon_cart, CartFragment.class));
-        list.add(new Tab("我的", R.drawable.selector_icon_mine, MineFragment.class));
+        list.add(new Tab(getString(R.string.home), R.drawable.selector_icon_home, HomeFragment.class));
+        list.add(new Tab(getString(R.string.cart), R.drawable.selector_icon_hot, HotFragment.class));
+        list.add(new Tab(getString(R.string.categary), R.drawable.selector_icon_category, CategoryFragment.class));
+        list.add(new Tab(getString(R.string.cart), R.drawable.selector_icon_cart, CartFragment.class));
+        list.add(new Tab(getString(R.string.mine), R.drawable.selector_icon_mine, MineFragment.class));
         tabhost.setup(context, getSupportFragmentManager(), R.id.real_fl);
         for (Tab tab : list) {
             addTab(tab);

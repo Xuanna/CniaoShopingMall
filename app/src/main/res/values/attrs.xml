@@ -5,7 +5,7 @@
 
         <attr name="rightButtonIcon" format="reference"/>
         <attr name="isShowSearchView" format="boolean"/>
-
+        <attr name="myTitleText" format="string|reference"/>
     </declare-styleable>
 
     <declare-styleable name="ClearEditText">

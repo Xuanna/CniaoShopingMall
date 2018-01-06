@@ -4,14 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:background="?attr/colorPrimary"
+    <com.custom.cniaoshopingmall.widget.CnToolbar
+        android:id="@+id/cnToolbar"
+        android:background="@color/red"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:isShowSearchView="true"
-        android:minHeight="?attr/actionBarSize"
-        android:layout_height="wrap_content"/>
+        android:minHeight="?attr/actionBarSize"/>
     <com.youth.banner.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
