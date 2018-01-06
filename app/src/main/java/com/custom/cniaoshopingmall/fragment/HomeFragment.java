@@ -128,11 +128,6 @@ public class HomeFragment extends BaseFragment {
             public void onRequessSuccess(Response response, List<HomeRecomendInfo> o) {
                 refresh.finishRefreshLoadMore();
                 refresh.finishRefresh();
-                try {
-                    Log.e("response", response.body().string());
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
                 recomendInfos = o;
                 if (refreshMode == 0) {
                     adapter.addData(recomendInfos);
