@@ -56,6 +56,15 @@ public abstract class BaseAdapter<T,H extends BaseRecycleHolder> extends Recycle
             }
         }
     }
+//    public void add(List<T> list){
+//        public void addData(List<T> list){//int position,
+//            if (list!=null&&list.size()>0){
+//                for (int i=0;i<list.size();i++){
+//                    datas.add(list.get(i));
+//                    notifyItemInserted(i);
+//                }
+//            }
+//    }
 
     public void refreshData(List<T> list){
         if (list!=null&&list.size()>0){
