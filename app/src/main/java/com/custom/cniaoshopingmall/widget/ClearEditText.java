@@ -3,17 +3,12 @@ package com.custom.cniaoshopingmall.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.EditText;
 
 import com.custom.cniaoshopingmall.R;
 import com.custom.cniaoshopingmall.tools.CommonUtil;
