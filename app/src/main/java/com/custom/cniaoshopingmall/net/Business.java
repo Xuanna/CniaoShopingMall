@@ -29,4 +29,24 @@ public class Business {
         okhttpHelper.post(Urls.recommendUrl,map,baseCallback);
     }
 
+    /**
+     *商品一级分类
+     * @param baseCallback
+     */
+    public static void getCategoryList(BaseCallback baseCallback){
+        Map<String,String> map=new HashMap<>();
+        okhttpHelper.post(Urls.categoryListUrl,map,baseCallback);
+    }
+
+    /**
+     *商品分类下的商品
+     * @param baseCallback
+     */
+    public static void getWaresList(String categoryId,int curPage,int pageSize,BaseCallback baseCallback){
+        Map<String,String> map=new HashMap<>();
+        map.put("categoryId",categoryId+"");
+        map.put("curPage",curPage+"");
+        map.put("pageSize",pageSize+"");
+        okhttpHelper.post(Urls.waresListUrl,map,baseCallback);
+    }
 }

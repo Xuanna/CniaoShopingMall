@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.custom.cniaoshopingmall.R;
-import com.custom.cniaoshopingmall.tools.CommonUtil;
+import com.custom.cniaoshopingmall.utils.CommonUtil;
 
 /**
  * Created by xuchichi on 2018/1/1.

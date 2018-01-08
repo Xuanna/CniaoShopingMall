@@ -1,4 +1,4 @@
-package com.custom.cniaoshopingmall.tools;
+package com.custom.cniaoshopingmall.utils;
 
 import android.content.Context;
 

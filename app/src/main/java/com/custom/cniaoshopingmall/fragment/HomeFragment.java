@@ -20,7 +20,12 @@ import com.custom.cniaoshopingmall.entity.BannerInfo;
 import com.custom.cniaoshopingmall.entity.HomeRecomendInfo;
 import com.custom.cniaoshopingmall.net.Business;
 import com.custom.cniaoshopingmall.net.DialogCallback;
-import com.custom.cniaoshopingmall.tools.GildeImageLoader;
+import com.custom.cniaoshopingmall.net.Urls;
+import com.custom.cniaoshopingmall.utils.CommonUtil;
+import com.custom.cniaoshopingmall.utils.GildeImageLoader;
+import com.custom.cniaoshopingmall.utils.Pager;
+import com.custom.cniaoshopingmall.utils.RecyclerViewDivider;
+import com.custom.cniaoshopingmall.utils.ToastUtils;
 import com.custom.cniaoshopingmall.widget.CnToolbar;
 import com.squareup.picasso.Picasso;
 import com.youth.banner.Banner;
@@ -123,6 +128,24 @@ public class HomeFragment extends BaseFragment {
     }
 
     public void getRecommend() {
+//        Pager.newBuilder().setUrl(Urls.recommendUrl)
+//                .setCanLoadMore(true)
+//                .setOnPageListener(new Pager.OnPageListener() {
+//                    @Override
+//                    public void load(List data, int pageIndex, int pageSize) {
+//                        adapter.addData(data);
+//                    }
+//
+//                    @Override
+//                    public void refresh(List data, int pageIndex, int pageSize) {
+//                        adapter.refreshData(data);
+//                    }
+//
+//                    @Override
+//                    public void loadMore(List data, int pageIndex, int pageSize) {
+//                        adapter.addMore(data);
+//                    }
+//                }).builder(context);
         Business.getRecommend(new DialogCallback<List<HomeRecomendInfo>>(context) {
             @Override
             public void onRequessSuccess(Response response, List<HomeRecomendInfo> o) {
@@ -137,7 +160,6 @@ public class HomeFragment extends BaseFragment {
                     adapter.addMore(recomendInfos);
                 }
             }
-
             @Override
             public void onRequessError(Response response) {
 
@@ -151,10 +173,11 @@ public class HomeFragment extends BaseFragment {
         recycleView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         adapter = new HomeAdapter(context, recomendInfos, R.layout.template_home_cardview);
         recycleView.setAdapter(adapter);
+        recycleView.addItemDecoration(new RecyclerViewDivider(context,LinearLayoutManager.VERTICAL, CommonUtil.dp2Px(context,10),context.getResources().getColor(R.color.gray)));
         adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                ToastUtils.show(context,position+"");
             }
         });
 
