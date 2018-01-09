@@ -23,6 +23,7 @@ import com.custom.cniaoshopingmall.net.DialogCallback;
 import com.custom.cniaoshopingmall.net.Urls;
 import com.custom.cniaoshopingmall.utils.CommonUtil;
 import com.custom.cniaoshopingmall.utils.GildeImageLoader;
+import com.custom.cniaoshopingmall.utils.MyPager;
 import com.custom.cniaoshopingmall.utils.Pager;
 import com.custom.cniaoshopingmall.utils.RecyclerViewDivider;
 import com.custom.cniaoshopingmall.utils.ToastUtils;
@@ -31,6 +32,7 @@ import com.squareup.picasso.Picasso;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,6 +102,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     public void getBanner() {
+
         Business.getBanner(1, new DialogCallback<List<BannerInfo>>(getContext()) {
             @Override
             public void onRequessSuccess(Response response, List<BannerInfo> lists) {
@@ -128,6 +131,24 @@ public class HomeFragment extends BaseFragment {
     }
 
     public void getRecommend() {
+        MyPager<List<HomeRecomendInfo>> pager=new MyPager<>(context);
+        pager.setRefreshLayout(refresh);
+        pager.setUrl(Urls.recommendUrl);
+        pager.requestData();
+        pager.setOnPageListener(new MyPager.OnPageListner<List<HomeRecomendInfo>>() {
+            @Override
+            public void showData(List data) {
+                adapter.addData(data);
+            }
+            @Override
+            public void onRefreh(List data) {
+                adapter.refreshData(data);
+            }
+            @Override
+            public void loadMore(List data) {
+                adapter.addMore(data);
+            }
+        });
 //        Pager.newBuilder().setUrl(Urls.recommendUrl)
 //                .setCanLoadMore(true)
 //                .setOnPageListener(new Pager.OnPageListener() {
@@ -146,25 +167,25 @@ public class HomeFragment extends BaseFragment {
 //                        adapter.addMore(data);
 //                    }
 //                }).builder(context);
-        Business.getRecommend(new DialogCallback<List<HomeRecomendInfo>>(context) {
-            @Override
-            public void onRequessSuccess(Response response, List<HomeRecomendInfo> o) {
-                refresh.finishRefreshLoadMore();
-                refresh.finishRefresh();
-                recomendInfos = o;
-                if (refreshMode == 0) {
-                    adapter.addData(recomendInfos);
-                } else if (refreshMode == 1) {
-                    adapter.refreshData(recomendInfos);
-                } else if (refreshMode == 2) {
-                    adapter.addMore(recomendInfos);
-                }
-            }
-            @Override
-            public void onRequessError(Response response) {
-
-            }
-        });
+//        Business.getRecommend(new DialogCallback<List<HomeRecomendInfo>>(context) {
+//            @Override
+//            public void onRequessSuccess(Response response, List<HomeRecomendInfo> o) {
+//                refresh.finishRefreshLoadMore();
+//                refresh.finishRefresh();
+//                recomendInfos = o;
+//                if (refreshMode == 0) {
+//                    adapter.addData(recomendInfos);
+//                } else if (refreshMode == 1) {
+//                    adapter.refreshData(recomendInfos);
+//                } else if (refreshMode == 2) {
+//                    adapter.addMore(recomendInfos);
+//                }
+//            }
+//            @Override
+//            public void onRequessError(Response response) {
+//
+//            }
+//        });
     }
 
     HomeAdapter adapter;
