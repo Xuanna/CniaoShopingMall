@@ -15,7 +15,7 @@ import okhttp3.Response;
 /**
  * Created by xuchichi on 2018/1/8.
  */
-public class MyPager<T>{
+public class MyPager{
     public static OkhttpHelper okhttpHelper;
     public static final int STATE_NORMAL=0;
     public static final int STATE_REFRESH=1;
