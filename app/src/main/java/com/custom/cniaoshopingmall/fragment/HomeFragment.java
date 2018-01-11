@@ -20,11 +20,8 @@ import com.custom.cniaoshopingmall.entity.BannerInfo;
 import com.custom.cniaoshopingmall.entity.HomeRecomendInfo;
 import com.custom.cniaoshopingmall.net.Business;
 import com.custom.cniaoshopingmall.net.DialogCallback;
-import com.custom.cniaoshopingmall.net.Urls;
 import com.custom.cniaoshopingmall.utils.CommonUtil;
 import com.custom.cniaoshopingmall.utils.GildeImageLoader;
-import com.custom.cniaoshopingmall.utils.MyPager;
-import com.custom.cniaoshopingmall.utils.Pager;
 import com.custom.cniaoshopingmall.utils.RecyclerViewDivider;
 import com.custom.cniaoshopingmall.utils.ToastUtils;
 import com.custom.cniaoshopingmall.widget.CnToolbar;
@@ -32,7 +29,6 @@ import com.squareup.picasso.Picasso;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -196,6 +192,12 @@ public class HomeFragment extends BaseFragment {
                 } else if (refreshMode == 2) {
                     adapter.addMore(recomendInfos);
                 }
+                   try {
+                       Log.e("response",response.body().string());
+                      }catch (Exception ex){
+                        ex.printStackTrace();
+                     }
+
             }
             @Override
             public void onRequessError(Response response) {
