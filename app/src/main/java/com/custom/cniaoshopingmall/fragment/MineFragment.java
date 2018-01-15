@@ -12,6 +12,12 @@ import android.widget.TextView;
 import com.custom.cniaoshopingmall.R;
 import com.custom.cniaoshopingmall.activity.LoginActivity;
 import com.custom.cniaoshopingmall.base.BaseFragment;
+import com.custom.cniaoshopingmall.msg.LoginRespMsg;
+import com.custom.cniaoshopingmall.utils.Contants;
+import com.custom.cniaoshopingmall.utils.LogUtils;
+import com.custom.cniaoshopingmall.utils.ToastUtils;
+import com.custom.cniaoshopingmall.utils.UserUtil;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,10 +67,28 @@ public class MineFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_head:
-                startActivity(new Intent(context, LoginActivity.class));
+                startActivityForResult(new Intent(context, LoginActivity.class), Contants.START_CODE);
                 break;
             case R.id.btn_logout:
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==getActivity().RESULT_OK){
+             LoginRespMsg loginRespMsg= UserUtil.getUser();
+            if (loginRespMsg!=null){
+                showView(loginRespMsg);
+                LogUtils.e(UserUtil.getToken());
+            }else{
+                ToastUtils.show(context,"null");
+            }
+        }
+    }
+    public void showView(LoginRespMsg user){
+            Picasso.with(context).load(user.data.logo_url).into(imgHead);
+            txtUsername.setText(user.data.username);
     }
 }

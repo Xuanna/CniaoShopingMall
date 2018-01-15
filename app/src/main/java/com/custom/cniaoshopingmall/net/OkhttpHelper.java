@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.custom.cniaoshopingmall.MyApplication;
+import com.custom.cniaoshopingmall.utils.LogUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 
@@ -57,6 +58,11 @@ public class OkhttpHelper {
                 callback.onResponse(response);
                 if(response.isSuccessful()){
                     String string=response.body().string();
+                    try {
+                        LogUtils.e(string);
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                    }
                     if(callback.mType==String.class){
                         onRequestSuccess(response,callback,string);
                     }else{
@@ -88,6 +94,7 @@ public class OkhttpHelper {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                LogUtils.e("onError");
                 callback.onRequessError(response);
             }
         });

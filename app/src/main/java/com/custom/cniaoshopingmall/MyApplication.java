@@ -2,6 +2,9 @@ package com.custom.cniaoshopingmall;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.custom.cniaoshopingmall.utils.SharePerferenceUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,12 +20,12 @@ public class MyApplication extends Application {
             .connectTimeout(10*1000, TimeUnit.SECONDS)
     .writeTimeout(10*1000, TimeUnit.SECONDS)
     .readTimeout(10*1000, TimeUnit.SECONDS).build();
+    public static SharePerferenceUtils sharePerferenceUtils;
 
     @Override
     public void onCreate() {
         super.onCreate();
         context=getApplicationContext();
-
-
+         sharePerferenceUtils=new SharePerferenceUtils(this);
     }
 }

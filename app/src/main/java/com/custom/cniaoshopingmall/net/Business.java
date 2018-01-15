@@ -49,4 +49,13 @@ public class Business {
         map.put("pageSize",pageSize+"");
         okhttpHelper.post(Urls.waresListUrl,map,baseCallback);
     }
+    /**
+     * 用户登录
+      */
+    public static void login(String phone,String password,BaseCallback baseCallback){
+        Map<String,String> map=new HashMap<>();
+        map.put("phone",phone+"");
+        map.put("password",password+"");
+        okhttpHelper.post(Urls.loginUrl,map,baseCallback);
+    }
 }

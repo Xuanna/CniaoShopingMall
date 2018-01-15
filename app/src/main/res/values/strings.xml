@@ -6,4 +6,7 @@
     <string name="mine">我的</string>
     <string name="categary">分类</string>
     <string name="noData">暂无数据</string>
+    <string name="inputNum">请输入手机号码</string>
+    <string name="inputLoginPwd">请输入登录密码</string>
+    <string name="inputTrueNum">请输入正确的手机号</string>
 </resources>
