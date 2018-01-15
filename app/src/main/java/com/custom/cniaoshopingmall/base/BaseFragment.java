@@ -1,12 +1,16 @@
 package com.custom.cniaoshopingmall.base;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.custom.cniaoshopingmall.MyApplication;
+import com.custom.cniaoshopingmall.utils.SharePerferenceUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -16,6 +20,7 @@ import butterknife.Unbinder;
  */
 public abstract class BaseFragment extends Fragment {
     public Context context;
+    public SharePerferenceUtils perferenceUtils;
     View view;
     Unbinder unbinder;
     public abstract int setLayout();
@@ -29,6 +34,7 @@ public abstract class BaseFragment extends Fragment {
         view=LayoutInflater.from(context).inflate(setLayout(),null);
         unbinder=ButterKnife.bind(this,view);
         initView(view);
+        perferenceUtils=MyApplication.getInstace().sharePerferenceUtils;
         return view;
     }
 

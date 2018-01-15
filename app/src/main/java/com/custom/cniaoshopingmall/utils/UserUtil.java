@@ -10,10 +10,10 @@ import com.custom.cniaoshopingmall.msg.LoginRespMsg;
  */
 public class UserUtil {
     public static void saveUser(LoginRespMsg loginRespMsg){
-        MyApplication.sharePerferenceUtils.setString("saveUser",JSONUtil.toJSON(loginRespMsg));
+        MyApplication.getInstace().sharePerferenceUtils.setString("saveUser",JSONUtil.toJSON(loginRespMsg));
     }
     public static LoginRespMsg getUser(){
-        String string= MyApplication.sharePerferenceUtils.getString("saveUser",null);
+        String string= MyApplication.getInstace().sharePerferenceUtils.getString("saveUser",null);
         LogUtils.e("string="+string);
         if(TextUtils.isEmpty(string)){
             return null;
@@ -22,9 +22,9 @@ public class UserUtil {
         }
     }
     public static void saveToken(String token){
-        MyApplication.sharePerferenceUtils.setString("token",token);
+        MyApplication.getInstace().sharePerferenceUtils.setString("token",token);
     }
     public static String getToken(){
-        return  MyApplication.sharePerferenceUtils.getString("token",null);
+        return  MyApplication.getInstace().sharePerferenceUtils.getString("token",null);
     }
 }

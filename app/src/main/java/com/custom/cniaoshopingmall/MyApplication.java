@@ -20,12 +20,16 @@ public class MyApplication extends Application {
             .connectTimeout(10*1000, TimeUnit.SECONDS)
     .writeTimeout(10*1000, TimeUnit.SECONDS)
     .readTimeout(10*1000, TimeUnit.SECONDS).build();
-    public static SharePerferenceUtils sharePerferenceUtils;
-
+    public  SharePerferenceUtils sharePerferenceUtils;
+    public MyApplication instance;
     @Override
     public void onCreate() {
         super.onCreate();
         context=getApplicationContext();
+           instance=this;
          sharePerferenceUtils=new SharePerferenceUtils(this);
+    }
+    public static MyApplication getInstace(){
+        return getInstace();
     }
 }
