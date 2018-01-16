@@ -4,15 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <!--app:btnAddBackground="@color/black"-->
+    <!--app:textViewBackground="@color/green"-->
+    <!--app:btnReduceBackground="@color/yellow"-->
 <com.custom.cniaoshopingmall.widget.NumberAddView
-    app:value="1"
-    app:btnAddBackground="@color/black"
-    app:textViewBackground="@color/green"
-    app:btnReduceBackground="@color/yellow"
+    app:value="2"
     app:maxValue="100"
-    app:minValue="0"
+    app:minValue="1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"/>
-
 </LinearLayout>

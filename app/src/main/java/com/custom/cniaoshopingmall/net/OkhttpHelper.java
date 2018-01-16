@@ -2,9 +2,11 @@ package com.custom.cniaoshopingmall.net;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 
 import com.custom.cniaoshopingmall.MyApplication;
 import com.custom.cniaoshopingmall.utils.LogUtils;
+import com.custom.cniaoshopingmall.utils.UserUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 
@@ -102,6 +104,7 @@ public class OkhttpHelper {
     }
     public static Request getRequest(String url, RequestBody requestBody, OkhttpMethod method){
       Request.Builder builder=new Request.Builder();
+//      url=url+"?token"+UserUtil.getToken(MyApplication.context);
         builder.url(url);
         if(method==OkhttpMethod.GET){
             builder.get();
@@ -115,6 +118,11 @@ public class OkhttpHelper {
         for (Map.Entry<String,String> map:params.entrySet()) {
             builder.add(map.getKey(),map.getValue());
         }
+//        String token= UserUtil.getToken(MyApplication.context);
+//        if (!TextUtils.isEmpty(token)){
+//            builder.add("token",token);
+//        }
+
         return  builder.build();
     }
     enum OkhttpMethod{

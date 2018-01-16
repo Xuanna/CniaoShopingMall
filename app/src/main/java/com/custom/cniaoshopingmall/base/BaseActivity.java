@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
 
+import com.custom.cniaoshopingmall.MyApplication;
 import com.custom.cniaoshopingmall.utils.LogUtils;
+import com.custom.cniaoshopingmall.utils.SharePerferenceUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -40,5 +43,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
     public void startActivitys(Activity activity){
         startActivity(new Intent(this,activity.getClass()));
+    }
+    public void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 }

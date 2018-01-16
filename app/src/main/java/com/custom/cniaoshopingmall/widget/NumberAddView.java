@@ -3,6 +3,7 @@ package com.custom.cniaoshopingmall.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.TintTypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,13 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.custom.cniaoshopingmall.R;
-
-import butterknife.OnClick;
+import com.custom.cniaoshopingmall.utils.LogUtils;
 
 /**
  * Created by xuchichi on 2018/1/16.
  */
-public class NumberAddView extends LinearLayout {
+public class NumberAddView extends LinearLayout implements View.OnClickListener{
 
     private Button btnAdd;
     private Button btnReduce;
@@ -26,11 +26,12 @@ public class NumberAddView extends LinearLayout {
     private LayoutInflater inflater;
     private int value;
     private int minValue;
-    private int maxValue;
+    private int maxValue=DEFUALT_MAX;
+    public static final int DEFUALT_MAX=1000;
     OnButtonClickListener onButtonClickListener;
 
     public int getValue() {
-        String currentValue=textView.getTag().toString();
+        String currentValue=textView.getText().toString();
         if (!TextUtils.isEmpty(currentValue)){
             value=Integer.parseInt(currentValue);
         }
@@ -64,16 +65,18 @@ public class NumberAddView extends LinearLayout {
         initView();
 
         if (attrs!=null){
-            TypedArray ty= context.obtainStyledAttributes(R.styleable.NumberAddView);
 
-          int value= ty.getInt(R.styleable.NumberAddView_value,0);
+            TypedArray ty= context.obtainStyledAttributes(attrs,R.styleable.NumberAddView);
+//            final TintTypedArray ty = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
+//                    R.styleable.NumberAddView, defStyleAttr, 0);
+           value= ty.getInt(R.styleable.NumberAddView_value,0);
             setValue(value);
             textView.setText(value+"");
 
-            int minValue= ty.getInt(R.styleable.NumberAddView_minValue,0);
+             minValue= ty.getInt(R.styleable.NumberAddView_minValue,0);
             setMinValue(minValue);
 
-            int maxValue= ty.getInt(R.styleable.NumberAddView_maxValue,0);
+             maxValue= ty.getInt(R.styleable.NumberAddView_maxValue,0);
             setMaxValue(maxValue);
 
             Drawable btnAddDrawable= ty.getDrawable(R.styleable.NumberAddView_btnAddBackground);
@@ -94,6 +97,9 @@ public class NumberAddView extends LinearLayout {
         btnAdd = (Button) view.findViewById(R.id.btnAdd);
         btnReduce = (Button) view.findViewById(R.id.btnReduce);
         textView = (TextView) view.findViewById(R.id.tvNum);
+
+        btnAdd.setOnClickListener(this);
+        btnReduce.setOnClickListener(this);
     }
 
     private void setAddBackground(Drawable drawable){
@@ -114,6 +120,25 @@ public class NumberAddView extends LinearLayout {
         }
     }
 
+    @Override
+    public void onClick(View view) {
+       LogUtils.e("onclick");
+        switch (view.getId()){
+            case R.id.btnReduce:
+                numberReduce();
+                if (onButtonClickListener!=null){
+                    onButtonClickListener.reduce(value);
+                }
+                break;
+            case R.id.btnAdd:
+                numberAdd();
+                if (onButtonClickListener!=null){
+                    onButtonClickListener.adds(value);
+                }
+                break;
+        }
+
+    }
 
     public void setOnButtonClickListsner(OnButtonClickListener onButtonClickListener){
         this.onButtonClickListener=onButtonClickListener;
@@ -126,27 +151,9 @@ public class NumberAddView extends LinearLayout {
     }
 
 
-    @OnClick({R.id.btnReduce, R.id.btnAdd})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnReduce:
-                numberReduce();
-                if (onButtonClickListener!=null){
-                    onButtonClickListener.reduce(value);
-                }
-
-                break;
-            case R.id.btnAdd:
-                numberAdd();
-                if (onButtonClickListener!=null){
-                    onButtonClickListener.adds(value);
-                }
-                break;
-        }
-    }
-
     private void numberAdd(){
         getValue();
+        LogUtils.e("maxValue:"+maxValue);
         if (value<maxValue){
             value=value+1;
             textView.setText(value+"");

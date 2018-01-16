@@ -46,7 +46,13 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-
+        LoginRespMsg loginRespMsg= UserUtil.getUser();
+        if (loginRespMsg!=null){
+            showView(loginRespMsg);
+            btnLogout.setVisibility(View.VISIBLE);
+        }else{
+            btnLogout.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -77,15 +83,14 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode==getActivity().RESULT_OK){
-//             LoginRespMsg loginRespMsg= UserUtil.getUser();
-//            if (loginRespMsg!=null){
-//                showView(loginRespMsg);
-//                LogUtils.e(UserUtil.getToken());
-//            }else{
-//                ToastUtils.show(context,"null");
-//            }
-//        }
+        if (resultCode==getActivity().RESULT_OK){
+             LoginRespMsg loginRespMsg= UserUtil.getUser();
+            if (loginRespMsg!=null){
+                showView(loginRespMsg);
+            }else{
+                ToastUtils.show(context,"null");
+            }
+        }
     }
     public void showView(LoginRespMsg user){
             Picasso.with(context).load(user.data.logo_url).into(imgHead);

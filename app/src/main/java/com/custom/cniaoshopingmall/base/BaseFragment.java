@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.custom.cniaoshopingmall.MyApplication;
 import com.custom.cniaoshopingmall.utils.SharePerferenceUtils;
@@ -22,6 +23,7 @@ public abstract class BaseFragment extends Fragment {
     public Context context;
     View view;
     Unbinder unbinder;
+
     public abstract int setLayout();
 
     public abstract void initView(View view);
@@ -58,5 +60,13 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+    }
+    public void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getActivity().getCurrentFocus()!=null){
+            if (getActivity().getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 }

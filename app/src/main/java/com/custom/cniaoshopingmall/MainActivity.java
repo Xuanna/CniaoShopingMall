@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
 
     public void initTab() {
         list.add(new Tab(getString(R.string.home), R.drawable.selector_icon_home, HomeFragment.class));
-        list.add(new Tab(getString(R.string.cart), R.drawable.selector_icon_hot, HotFragment.class));
+        list.add(new Tab(getString(R.string.hot), R.drawable.selector_icon_hot, HotFragment.class));
         list.add(new Tab(getString(R.string.categary), R.drawable.selector_icon_category, CategoryFragment.class));
         list.add(new Tab(getString(R.string.cart), R.drawable.selector_icon_cart, CartFragment.class));
         list.add(new Tab(getString(R.string.mine), R.drawable.selector_icon_mine, MineFragment.class));

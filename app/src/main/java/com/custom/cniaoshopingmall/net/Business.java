@@ -73,4 +73,17 @@ public class Business {
         map.put("pageSize",pageSize+"");
         okhttpHelper.post(Urls.wareListUrl,map,baseCallback);
     }
+
+    /**
+     * 热卖
+     * @param curPage
+     * @param pageSize
+     * @param baseCallback
+     */
+    public static void getHotList(int curPage,int pageSize,BaseCallback baseCallback){
+        Map<String,String> map=new HashMap<>();
+        map.put("curPage",curPage+"");
+        map.put("pageSize",pageSize+"");
+        okhttpHelper.post(Urls.wareHotUrl,map,baseCallback);
+    }
 }

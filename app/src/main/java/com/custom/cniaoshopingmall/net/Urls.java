@@ -17,4 +17,6 @@ public class Urls {
     public static final String loginUrl= baseUrl+"course_api/auth/login";
     //获取分类下的商品
     public static final String wareListUrl= baseUrl+"course_api/wares/list";
+    //热卖商品
+    public static final String wareHotUrl= baseUrl+"course_api/wares/hot";
 }
