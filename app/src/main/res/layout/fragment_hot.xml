@@ -4,13 +4,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.custom.cniaoshopingmall.widget.ClearEditText
-        android:layout_width="match_parent"
-        app:drawableHeight="20"
-        app:drawableWidth="20"
-        android:layout_height="50dp" />
-
-
 
 
 </LinearLayout>
