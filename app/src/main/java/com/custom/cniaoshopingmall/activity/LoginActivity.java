@@ -61,8 +61,8 @@ public class LoginActivity extends BaseActivity {
         Business.login(phone, DESUtil.encode(Contants.DES_KEY,pwd), new DialogCallback<LoginRespMsg>(context) {
             @Override
             public void onRequessSuccess(Response response, LoginRespMsg object) {
-                UserUtil.saveToken(object.token);
-                UserUtil.saveUser(object);
+//                UserUtil.saveToken(object.token);
+//                UserUtil.saveUser(object);
                 setResult(RESULT_OK);
                 finish();
             }

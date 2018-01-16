@@ -20,7 +20,6 @@ import butterknife.Unbinder;
  */
 public abstract class BaseFragment extends Fragment {
     public Context context;
-    public SharePerferenceUtils perferenceUtils;
     View view;
     Unbinder unbinder;
     public abstract int setLayout();
@@ -34,7 +33,6 @@ public abstract class BaseFragment extends Fragment {
         view=LayoutInflater.from(context).inflate(setLayout(),null);
         unbinder=ButterKnife.bind(this,view);
         initView(view);
-        perferenceUtils=MyApplication.getInstace().sharePerferenceUtils;
         return view;
     }
 

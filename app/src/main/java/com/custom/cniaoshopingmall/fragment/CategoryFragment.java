@@ -1,5 +1,6 @@
 package com.custom.cniaoshopingmall.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.custom.cniaoshopingmall.R;
+import com.custom.cniaoshopingmall.activity.WareDetailActivity;
 import com.custom.cniaoshopingmall.adapter.CategaryFirstAdapter;
 import com.custom.cniaoshopingmall.adapter.CategoryWaresAdapter;
 import com.custom.cniaoshopingmall.base.BaseAdapter;
@@ -107,6 +109,14 @@ public class CategoryFragment extends BaseFragment {
         waresAdapter = new CategoryWaresAdapter(context, wareList);
         recycleContent.setAdapter(waresAdapter);
         recycleContent.setLayoutManager(new GridLayoutManager(context, 2));
+        waresAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent=new Intent(context, WareDetailActivity.class);
+                intent.putExtra("categoryId",wareList.get(position).categoryId);
+                startActivity(intent);
+            }
+        });
         refresh.setLoadMore(true);
         refresh.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override

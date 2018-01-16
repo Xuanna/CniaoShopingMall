@@ -24,6 +24,7 @@
         <ImageView
             android:layout_width="@dimen/ware_grid_img_width"
             android:layout_height="@dimen/ware_grid_img_height"
+            android:scaleType="center"
             android:id="@+id/drawee_view"
             android:layout_alignParentLeft="true"
             android:layout_gravity="center"

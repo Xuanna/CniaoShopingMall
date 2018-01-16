@@ -58,4 +58,19 @@ public class Business {
         map.put("password",password+"");
         okhttpHelper.post(Urls.loginUrl,map,baseCallback);
     }
+
+    /**
+     * 获取分类下的商品
+     * @param categoryId
+     * @param curPage
+     * @param pageSize
+     * @param baseCallback
+     */
+    public static void getWareList(String categoryId,int curPage,int pageSize,BaseCallback baseCallback){
+        Map<String,String> map=new HashMap<>();
+        map.put("categoryId",categoryId+"");
+        map.put("curPage",curPage+"");
+        map.put("pageSize",pageSize+"");
+        okhttpHelper.post(Urls.wareListUrl,map,baseCallback);
+    }
 }
