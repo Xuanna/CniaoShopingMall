@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
+import com.custom.cniaoshopingmall.utils.LogUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -23,6 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(setLayout());
         unbinder= ButterKnife.bind(this);
         initView();
+        Log.e("activityName:",getClass().getSimpleName());
     }
 
     public abstract int setLayout();
