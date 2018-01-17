@@ -96,7 +96,7 @@ public class CategoryFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 categoryId = firstList.get(position).id;
-                wareList.clear();
+//                wareList.clear();
                 waresAdapter.clear();
                 getWaresList();
             }
@@ -170,9 +170,10 @@ public class CategoryFragment extends BaseFragment {
         Business.getCategoryList(new DialogCallback<List<CategoryListInfo>>(context) {
             @Override
             public void onRequessSuccess(Response response, List<CategoryListInfo> categoryListInfo) {
-                if (firstList != null) {
-                    firstList.clear();
-                }
+//                if (firstList != null) {
+//                    firstList.clear();
+//                }
+                firstAdapter.clear();
                 categoryId = categoryListInfo.get(0).id;
                 firstList = categoryListInfo;
                 firstAdapter.addData(firstList);

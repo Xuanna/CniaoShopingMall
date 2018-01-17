@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 import com.custom.cniaoshopingmall.R;
 import com.custom.cniaoshopingmall.adapter.HotAdapter;
 import com.custom.cniaoshopingmall.base.BaseFragment;
@@ -30,8 +31,6 @@ import okhttp3.Response;
  * Created by Ivan on 15/9/22.
  */
 public class HotFragment extends BaseFragment {
-    @BindView(R.id.cnToolbar)
-    CnToolbar cnToolbar;
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
     @BindView(R.id.refresh)
@@ -59,12 +58,29 @@ public class HotFragment extends BaseFragment {
         getHot();
 
     }
-
+    int refreshMode;
 
     public void initAdapter(){
         adapter=new HotAdapter(context,list);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,true));
+        refresh.setLoadMore(true);
+        refresh.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+                curPage=1;
+                refreshMode = 1;
+                getHot();
+            }
+
+            @Override
+            public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
+                super.onRefreshLoadMore(materialRefreshLayout);
+                refreshMode = 2;
+                curPage=curPage+1;
+                getHot();
+            }
+        });
     }
 
 
@@ -72,10 +88,20 @@ public class HotFragment extends BaseFragment {
         Business.getHotList(curPage, pageSizde, new DialogCallback<HotInfo>(context) {
             @Override
             public void onRequessSuccess(Response response, HotInfo hotInfo) {
-                if (hotInfo!=null){
-                    list.clear();
-                    list=hotInfo.list;
-                    adapter.addData(list);
+                refresh.finishRefreshLoadMore();
+                refresh.finishRefresh();
+                if (hotInfo.list!=null){
+                    list= hotInfo.list;
+                    if (refreshMode==0){
+                        adapter.addData(list);
+                    }
+                    if (refreshMode==1){
+                        adapter.refreshData(list);
+                    }
+                    if (refreshMode==2){
+                        adapter.addMore(list);
+                    }
+
                 }
             }
 
