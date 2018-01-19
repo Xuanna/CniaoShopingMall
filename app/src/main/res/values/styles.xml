@@ -92,4 +92,13 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">@dimen/normalButtonHeight</item>
     </style>
+
+
+    <style name="ware_title">
+
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:maxLines">3</item>
+    </style>
+
 </resources>

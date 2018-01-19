@@ -7,9 +7,9 @@
     <com.custom.cniaoshopingmall.widget.CnToolbar
         android:id="@+id/cnToolbar"
         style="@style/cnToolbar"
+        app:myTitleText="@string/categary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:isShowSearchView="true"
         android:minHeight="?attr/actionBarSize"/>
     <LinearLayout
         android:orientation="horizontal"

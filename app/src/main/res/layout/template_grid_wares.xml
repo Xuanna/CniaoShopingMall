@@ -21,16 +21,24 @@
         android:orientation="vertical">
 
 
-        <ImageView
-            android:layout_width="@dimen/ware_grid_img_width"
-            android:layout_height="@dimen/ware_grid_img_height"
-            android:scaleType="center"
+        <!--<ImageView-->
+            <!--android:layout_width="@dimen/ware_grid_img_width"-->
+            <!--android:layout_height="@dimen/ware_grid_img_height"-->
+            <!--android:scaleType="center"-->
+            <!--android:id="@+id/drawee_view"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_gravity="center"-->
+           <!--/> -->
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="@dimen/ware_img_width"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center"
             android:id="@+id/drawee_view"
             android:layout_alignParentLeft="true"
-            android:layout_gravity="center"
-            >
+            app:viewAspectRatio="1"
 
-        </ImageView>
+            />
 
         <TextView
             android:id="@+id/text_title"

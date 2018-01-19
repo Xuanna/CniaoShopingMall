@@ -17,34 +17,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_list_item"
-        android:padding="5dp">
+        android:padding="5dp"
+        >
+
 
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/drawee_view"
             android:layout_width="@dimen/ware_img_width"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:background="@null"
-            app:backgroundImage="@mipmap/icon_msg"
+            android:id="@+id/drawee_view"
+            android:layout_alignParentLeft="true"
             app:viewAspectRatio="1"
 
             />
 
 
+
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:orientation="vertical">
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/drawee_view">
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ware_title"
+
+                />
 
 
             <View
                 style="@style/line_vertical"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
 
 
             <RelativeLayout
@@ -56,37 +65,30 @@
 
                 <TextView
                     android:id="@+id/text_price"
-                    style="@style/ware_price"
-                    android:text="12345"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/ware_price"
 
                     android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    />
 
                 <Button
                     android:id="@+id/btn_add"
-                    style="@style/bigRedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/bigRedButton"
+                    android:layout_marginTop="20dp"
+                    android:text="立即购买"
+
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-
-                    android:layout_marginTop="20dp"
-                    android:text="立即购买" />
-
-                <TextView
-                    android:text="12345"
-                    android:id="@+id/text_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/btn_add"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true" />
+                    />
             </RelativeLayout>
 
 
         </LinearLayout>
+
 
 
     </RelativeLayout>
