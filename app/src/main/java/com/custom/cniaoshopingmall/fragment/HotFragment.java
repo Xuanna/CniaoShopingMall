@@ -50,14 +50,15 @@ public class HotFragment extends BaseFragment {
     @Override
     public void initView(View view) {
         initAdapter();
-    }
-
-    @Override
-    public void getData() {
-        super.getData();
         getHot();
-
     }
+
+//    @Override
+//    public void getData() {
+//        super.getData();
+//        getHot();
+//
+//    }
     int refreshMode;
 
     public void initAdapter(){
@@ -88,17 +89,18 @@ public class HotFragment extends BaseFragment {
         Business.getHotList(curPage, pageSizde, new DialogCallback<HotInfo>(context) {
             @Override
             public void onRequessSuccess(Response response, HotInfo hotInfo) {
-                refresh.finishRefreshLoadMore();
-                refresh.finishRefresh();
+
                 if (hotInfo.list!=null){
                     list= hotInfo.list;
                     if (refreshMode==0){
                         adapter.addData(list);
                     }
                     if (refreshMode==1){
+                        refresh.finishRefresh();
                         adapter.refreshData(list);
                     }
                     if (refreshMode==2){
+                        refresh.finishRefreshLoadMore();
                         adapter.addMore(list);
                     }
 
@@ -107,6 +109,8 @@ public class HotFragment extends BaseFragment {
 
             @Override
             public void onRequessError(Response response) {
+                refresh.finishRefreshLoadMore();
+                refresh.finishRefresh();
                 try{
                     ToastUtils.show(context,"onRequessError");
 

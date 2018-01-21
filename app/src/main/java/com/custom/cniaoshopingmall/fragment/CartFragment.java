@@ -1,6 +1,7 @@
 package com.custom.cniaoshopingmall.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,16 @@ public class CartFragment extends BaseFragment {
     List<String> strings=new ArrayList<>();
     @Override
     public void initView(View view) {
+        strings.add("计划的风景");
+        strings.add("计划的风景");
+        strings.add("计划的风景");
+        strings.add("计划的风景");
+        strings.add("计划的风景");
+
+
         adapter=new CartAdapter(context,strings);
+        recycleView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,true));
+        refresh.setLoadMore(true);
         recycleView.setAdapter(adapter);
     }
 

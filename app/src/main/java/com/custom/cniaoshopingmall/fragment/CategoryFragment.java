@@ -72,6 +72,7 @@ public class CategoryFragment extends BaseFragment {
         initContentAdapter();
         getBanner();
         initBanner();
+//        getCategoryList();
     }
 
     @Override

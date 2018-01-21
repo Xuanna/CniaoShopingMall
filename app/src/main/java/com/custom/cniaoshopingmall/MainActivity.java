@@ -15,6 +15,7 @@ import com.custom.cniaoshopingmall.fragment.CategoryFragment;
 import com.custom.cniaoshopingmall.fragment.HomeFragment;
 import com.custom.cniaoshopingmall.fragment.HotFragment;
 import com.custom.cniaoshopingmall.fragment.MineFragment;
+import com.custom.cniaoshopingmall.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +38,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        LogUtils.e("MainInitView");
         initTab();
     }
 
     public void initTab() {
         list.add(new Tab(getString(R.string.home), R.drawable.selector_icon_home, HomeFragment.class));
-        list.add(new Tab(getString(R.string.hot), R.drawable.selector_icon_hot, HotFragment.class));
+        list.add(new Tab(getString(R.string.hot), R.drawable.selector_icon_hot, HotFragment.class));//HotFragment.class
         list.add(new Tab(getString(R.string.categary), R.drawable.selector_icon_category, CategoryFragment.class));
         list.add(new Tab(getString(R.string.cart), R.drawable.selector_icon_cart, CartFragment.class));
         list.add(new Tab(getString(R.string.mine), R.drawable.selector_icon_mine, MineFragment.class));

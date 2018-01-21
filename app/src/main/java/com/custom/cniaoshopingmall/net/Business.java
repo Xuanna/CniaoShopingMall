@@ -1,5 +1,7 @@
 package com.custom.cniaoshopingmall.net;
 
+import com.custom.cniaoshopingmall.utils.LogUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,6 +86,7 @@ public class Business {
         Map<String,String> map=new HashMap<>();
         map.put("curPage",curPage+"");
         map.put("pageSize",pageSize+"");
+        LogUtils.e("curPage="+curPage+"=pageSize="+pageSize);
         okhttpHelper.post(Urls.wareHotUrl,map,baseCallback);
     }
 }

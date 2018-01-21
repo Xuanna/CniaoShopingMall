@@ -42,6 +42,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         unbinder.unbind();
     }
     public void startActivitys(Activity activity){
+
         startActivity(new Intent(this,activity.getClass()));
     }
     public void hideKeyboard() {
