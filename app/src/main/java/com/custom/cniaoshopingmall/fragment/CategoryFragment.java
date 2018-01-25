@@ -26,6 +26,7 @@ import com.custom.cniaoshopingmall.entity.CategoryWaresInfo;
 import com.custom.cniaoshopingmall.net.Business;
 import com.custom.cniaoshopingmall.net.DialogCallback;
 import com.custom.cniaoshopingmall.utils.GildeImageLoader;
+import com.custom.cniaoshopingmall.utils.LogUtils;
 import com.custom.cniaoshopingmall.widget.CnToolbar;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -72,6 +73,7 @@ public class CategoryFragment extends BaseFragment {
         initContentAdapter();
         getBanner();
         initBanner();
+        LogUtils.e("page"+pageIndex);
 //        getCategoryList();
     }
 
@@ -122,6 +124,7 @@ public class CategoryFragment extends BaseFragment {
         refresh.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+                pageIndex=1;
                 refreshMode = 1;
                 getWaresList();
             }
@@ -130,6 +133,7 @@ public class CategoryFragment extends BaseFragment {
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout);
                 refreshMode = 2;
+                pageIndex=pageIndex+1;
                 getWaresList();
             }
         });

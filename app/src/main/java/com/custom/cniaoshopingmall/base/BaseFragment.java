@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import com.custom.cniaoshopingmall.MyApplication;
+import com.custom.cniaoshopingmall.utils.LogUtils;
 import com.custom.cniaoshopingmall.utils.SharePerferenceUtils;
 
 import butterknife.ButterKnife;
@@ -36,23 +37,23 @@ public abstract class BaseFragment extends Fragment {
             view=LayoutInflater.from(context).inflate(setLayout(),null);
         }else{
            ViewGroup viewGroup= (ViewGroup) view.getParent();
-           if (viewGroup!=null){
-               viewGroup.removeView(view);
-           }
+            if (viewGroup!=null){
+                viewGroup.removeView(view);
+            }
         }
 
         unbinder=ButterKnife.bind(this,view);
         initView(view);
         return view;
     }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser){
-            getData();
-        }
-    }
+//
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (isVisibleToUser){
+//            getData();
+//        }
+//    }
 
     public void getData(){
 
@@ -60,7 +61,9 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        LogUtils.e("onActivityCreated");
         if (getUserVisibleHint()) {
+            LogUtils.e("getUserVisibleHint");
             getData();
         }
     }

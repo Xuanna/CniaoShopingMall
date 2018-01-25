@@ -12,7 +12,40 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+def supportVersion="25.+"
+def okhttpVeresion="3.9.1";
+def gsonVersion="2.2.4";
+def bannerVersion="1.4.10";
+def okioVersion="1.13.0";
+def picassoVersion="2.5.2";
+def dialogVersion="0.7@aar";
+def cardViewVersion="25.3.1";
+def recycleViewVersion="25.3.1"
+def materialrefeshlayoutVersion="1.3.0";
+def frescoVersion="1.7.1";
+def loggerVersion="1.15";
 
+project.ext{//整個項目的配置
+    compileSdkVersion=25
+    buildToolsVersion="27.0.2"
+
+    libSupportAppcompat="com.android.support:appcompat-v7:${supportVersion}"
+    libSupportOkhttp="com.squareup.okhttp3:okhttp:${okhttpVeresion}"
+    libSupportGson="com.google.code.gson:gson:${gsonVersion}"
+
+    libSupportBanner="com.youth.banner:banner:${bannerVersion}"
+    libSupportOkio="com.squareup.okio:okio:${okioVersion}"
+    libSupportPicasso="com.squareup.picasso:picasso:${picassoVersion}"
+
+    libSupportDialog="com.github.d-max:spots-dialog:${dialogVersion}"
+    libSupportRecycleview="com.android.support:recyclerview-v7:${recycleViewVersion}"
+    libSupportCardview="com.android.support:cardview-v7:${cardViewVersion}"
+
+    libSupportMaterialrefeshlayout="com.cjj.materialrefeshlayout:library:${materialrefeshlayoutVersion}"
+    libSupportFresco="com.facebook.fresco:fresco:${frescoVersion}"
+    libSupportLogger="com.orhanobut:logger:${loggerVersion}"
+
+}
 allprojects {
     repositories {
         jcenter()
